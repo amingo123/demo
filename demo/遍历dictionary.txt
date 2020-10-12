@@ -1,0 +1,11 @@
+﻿foreach ((int key, string value) in dict)
+            {
+                Console.WriteLine($"key={key},value={value}");
+            }
+
+for (int i = 0; i < dict.Count; i++)
+            {
+                (int key, string value) = dict.ElementAt(i);
+
+                Console.WriteLine($"key={key},value={dict[key]}");
+            }
