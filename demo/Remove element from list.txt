@@ -1,0 +1,9 @@
+﻿
+for (int i = 0; i < students.Count; i++)
+{
+if (students[i] == 0)
+{
+students.RemoveAt(i);
+i--;
+}
+}
