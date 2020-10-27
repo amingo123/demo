@@ -6,7 +6,7 @@ namespace ConsoleTool2
 {
     class ProducerSample
     {
-        static void Main(string[] args)
+        static void Main1(string[] args)
         {
             //ThreadPool.SetMinThreads(10, 10);
 
