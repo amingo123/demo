@@ -21,8 +21,8 @@ namespace demo
                 queue.Enqueue(item);
                 Monitor.PulseAll(sync);
             }
-
         }
+
         public T Dequeue()
         {
             lock (sync)
