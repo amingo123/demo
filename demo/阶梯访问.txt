@@ -1,0 +1,57 @@
+﻿阶梯访问
+这种方法不像索引访问那么直接，但比索引访问要节省空间。
+
+典型的例子就是等级评定
+
+考试按分数评优良中差四个等级
+
+简单做法
+  let level = '优'
+    if(score <60 ){
+        level = '差'
+    }else if(score < 80) {
+        level = '中'
+    }else if(score < 90) {
+        level = '良'
+    }
+
+如果需要添加等级 60-70 之间 是一般，就需要改逻辑，逻辑简单的还好
+
+    let level = '优'
+    if(score <60 ){
+        level = '差'
+    }else if(score < 70) {
+        level = '一般'
+    }else if(score < 80) {
+        level = '中'
+    }else if(score < 90) {
+        level = '良'
+    }
+
+这时用阶梯查询就比较方便，而且扩展性也好
+
+    const levelTable = ['差', '中', '良', '优']
+    const scoreCeilTable = [60, 80, 90, 100]
+    
+    function getLevel(score) {
+        const len = scoreCeilTable.length
+        for(let i = 0; i < len; i++) {
+            const scoreCeil = scoreCeilTable[i]
+            if(score <= scoreCeil) {
+                return levelTable[i]
+            }
+            
+        }
+        return levelTable[len - 1]
+    }
+
+就算后面需要添加等级60-70 ---> '一般' 也只需要简单添加数据表就可以了，而不需要修改逻辑
+
+    const levelTable = ['差', '一般', '中', '良', '优']
+    const scoreCeilTable = [60, 70, 80, 90, 100]
+
+阶梯访问表需要注意几个问题
+
+留心端点
+二分查找替代顺序查找：上面例子用了顺序查找，当数据比较大时，查找成本还是比较大的，应该考虑用二分查找替代顺序查找
+考虑用索引访问来取代阶梯技术，阶梯查找比较耗时，如果速度非常重要，可以用索引访问来取代阶梯，用空间换时间，但也要分情况，因为离散空间是不能够完全替代连续空间的
